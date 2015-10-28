@@ -8,9 +8,9 @@ Gem::Specification.new do |spec|
   spec.version       = EmberCLI::Routes::VERSION
   spec.authors       = ["Chase McCarthy", "Jonathan Jackson"]
   spec.email         = ["chase@code0100fun.com", "jonathan.jackson1@me.com"]
-  spec.summary       = %q{}
-  spec.description   = %q{}
-  spec.homepage      = ""
+  spec.summary       = %q{A simple route helper for loading Ember apps from Rails}
+  spec.description   = %q{Allows for the serving of multiple Ember apps within one Rails app. The Ember apps index.html is loaded from Redis via ember-cli-rails-deploy-redis in production.}
+  spec.homepage      = "https://github.com/code0100fun/ember-cli-rails-routes"
   spec.license       = "MIT"
 
   spec.files         = `git ls-files -z`.split("\x0")
