@@ -1,31 +1,53 @@
-# Ember::Cli::Rails::Routes
-
-TODO: Write a gem description
+# ember-cli-rails-routes
 
 ## Installation
 
-Add this line to your application's Gemfile:
+Add this to your `Gemfile` and `bundle install`
 
-```ruby
+```rb
 gem 'ember-cli-rails-routes'
 ```
 
-And then execute:
+## Setup
 
-    $ bundle
+### Rails App
 
-Or install it yourself as:
+In your `routes.rb` file:
 
-    $ gem install ember-cli-rails-routes
+```rb
+ember_app :foo, scope: :app, path: 'frontend'
+```
 
-## Usage
+This reflects an ember app in the `<RAILS_ROOT>/frontend` directory that is exposed as `/app/foo` in the URL.
 
-TODO: Write usage instructions here
+### Ember App
 
-## Contributing
+Where `frontend/` is the same as `path` from above
 
-1. Fork it ( https://github.com/[my-github-username]/ember-cli-rails-assets/fork )
-2. Create your feature branch (`git checkout -b my-new-feature`)
-3. Commit your changes (`git commit -am 'Add some feature'`)
-4. Push to the branch (`git push origin my-new-feature`)
-5. Create a new Pull Request
+```js
+// ember-cli-build.js
+var app = new EmberApp(defaults, {
+  fingerprint: {
+    enabled: true,
+    prepend: 'frontend/'
+  }
+});
+```
+
+Tell Ember to treat the app route as the main entry point of the Ember app.
+
+```js
+// app/router.js
+Router.map(function() {
+  this.route('frontend', { path: '/app/foo' }, function() {
+
+  });
+});
+```
+
+## Running tests
+
+- `cd` into ember app (`test/dummy/frontend`)
+  - `ember build`
+- `cd`  into dummy rails app (`test/dummy`)
+  - `cucumber`
