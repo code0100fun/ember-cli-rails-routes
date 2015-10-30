@@ -22,7 +22,9 @@ This reflects an ember app in the `<RAILS_ROOT>/frontend` directory that is expo
 
 ### Ember App
 
-Where `frontend/` is the same as `path` from above
+First, you need to tell Ember to prepend the apps directory so Rails can serve assets from the right Ember app.
+
+Here `frontend/` is the same as `path` from above.
 
 ```js
 // ember-cli-build.js
@@ -34,7 +36,7 @@ var app = new EmberApp(defaults, {
 });
 ```
 
-Tell Ember to treat the app route as the main entry point of the Ember app.
+Second, tell Ember to treat the app route as the main entry point of the Ember app.
 
 ```js
 // app/router.js
@@ -43,6 +45,15 @@ Router.map(function() {
 
   });
 });
+```
+
+#### Alternativly use th ember-cli-rails-routes addon
+
+Notice that using the fingerprint option causes the assets to be fingerprinted even in development, which increases build times. You can get just the prepend behavior and only in development by using the `ember-cli-rails-routes` addon.
+
+```
+$ ember install ember-cli-rails-routes
+$ RAILS_PREPEND=frontend/ ember build
 ```
 
 ## Running tests
